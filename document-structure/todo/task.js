@@ -21,6 +21,7 @@ taskInput.addEventListener("keydown", (e) => {
     if (e.keyCode === 13) {
         if (taskInput.value) {
             addToDo(taskInput.value);
+            taskInput.value = "";
             e.preventDefault();
         }
     }
@@ -29,6 +30,7 @@ taskInput.addEventListener("keydown", (e) => {
 tasksAddBtn.addEventListener("click", (e) => {
     if (taskInput.value) {
         addToDo(taskInput.value);
+        taskInput.value = "";
         e.preventDefault();
     }
 });
