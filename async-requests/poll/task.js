@@ -1,6 +1,9 @@
 const xhr = new XMLHttpRequest();
 
-xhr.addEventListener("readystatechange", () => {
+xhr.onload = () => {
+    if (xhr.status !== 200) {
+        return alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    }
     if (xhr.readyState === xhr.DONE) {
         pollTitle = document.getElementById("poll__title"); // получаем поле для вопроса
         pollAnswers = document.getElementById("poll__answers"); // получаем поле для ответов
@@ -16,7 +19,7 @@ xhr.addEventListener("readystatechange", () => {
             `);
         });
     }
-});
+};
 
 xhr.open("GET", "https://students.netoservices.ru/nestjs-backend/poll");
 xhr.send();

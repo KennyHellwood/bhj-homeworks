@@ -1,6 +1,9 @@
 const xhr = new XMLHttpRequest();
 
-xhr.addEventListener("readystatechange", () => {
+xhr.onload = () => {
+    if (xhr.status !== 200) {
+        return alert(`Ошибка ${xhr.status}: ${xhr.statusText}`);
+    }
     if (xhr.readyState === xhr.DONE) {
         // скрываем loader
         const loader = document.getElementById("loader");
@@ -25,7 +28,7 @@ xhr.addEventListener("readystatechange", () => {
             `);
         });
     }
-});
+};
 
 xhr.open("GET", "https://students.netoservices.ru/nestjs-backend/slow-get-courses");
 xhr.send();
